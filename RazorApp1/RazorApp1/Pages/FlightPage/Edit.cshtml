@@ -1,0 +1,63 @@
+﻿@page
+@model RazorApp1.Pages.FlightPage.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Flight</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Flight.ID" />
+            <div class="form-group">
+                <label asp-for="Flight.FlightCode" class="control-label"></label>
+                <input asp-for="Flight.FlightCode" class="form-control" />
+                <span asp-validation-for="Flight.FlightCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <!--
+                <label asp-for="Flight.Airport" class="control-label"></label>
+                <input asp-for="Flight.Airport" class="form-control" />
+                <span asp-validation-for="Flight.Airport" class="text-danger"></span>
+                -->
+
+                <label asp-for="Flight.Airport" class="control-label"></label>
+                <select asp-for="Flight.Airport" class="form-control"
+                        asp-items="@Model.AirportList">
+                    <option value="">-- Select Airport --</option>
+                </select>
+
+            </div>
+            <div class="form-group">
+                <!--
+                <label asp-for="Flight.Plane" class="control-label"></label>
+                <input asp-for="Flight.Plane" class="form-control" />
+                <span asp-validation-for="Flight.Plane" class="text-danger"></span>
+                -->
+
+                <label asp-for="Flight.Plane" class="control-label"></label>
+                <select asp-for="Flight.Plane" class="form-control"
+                        asp-items="@Model.PlaneList">
+                    <option value="">-- Select Plane --</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
